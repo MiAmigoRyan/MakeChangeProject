@@ -14,12 +14,24 @@
 
 // above this is thought vommit...
 
-// tests:
+// tests: 
 //		Amount: .67, Tendered: .50, Result: Error message
+//1st test : pass
+//2nd test : pass
+//3rd test : 
 //		Amount: .67, Tendered: 1.00, Result: 1 quarter, 1 nickel, 3 pennies.
+//fail : result 1.31....quarters
+//2nd test :  pass
 //		Amount: .59, Tendered: 1.00, Result: 1 quarter, 1 dime, 1 nickel, 1 penny.
+//fail : result 1.64...quarter
+//2nd test : pass
 //		Amount: 3.96, Tendered: 20.00, Result: 1 ten dollar bill, 1 five dollar bill, 1 one dollar bill, 4 pennies.
+//fail : result :1 $10's ----no change! ?
+//2nd test :  fail only 3 pennies!!!!
+//3rd test : pass !!!
 //		Amount: any amount less than 20.00, Tendered: anything greater than amount: correct denominations for correct change.
+//fail : will only pass for dollars not change...
+//2nd test : pass for both dollars and cents.
 import java.util.Scanner;
 
 public class MakeChange {
@@ -38,83 +50,119 @@ public class MakeChange {
 		int dollars = (int) giveChange;
 
 		double coins = giveChange - dollars;
-
-		System.out.println(dollars + coins + " Total Change Due");
-
-		if (cost > paid) {
+	//System.out.println(coins);
+		double rndCents = Math.round(coins*100);
+		int cents = (int) rndCents;
+//		System.out.println(coins + "round?");
+//		int cents = (int) coins;
+//		System.out.println(cents);
+		if (paid > cost) {
+			System.out.println("Total Change Due");
+			System.out.println("----------------");
+			System.out.println("$" + dollars +"."+ cents);
+			System.out.println("----------------");
+		} else {
 			System.err.println("Payment is less than cost");
-		} else if (dollars > 0) {
-			// 20 or more in change
+		}
+
+		
+		while (dollars > 0) {
 			if (dollars >= 20) {
 				int twenty = dollars / 20;
-				System.out.println(twenty);
-				int newDollar = dollars - (twenty * 20);
-
-				if (newDollar >= 10) {
-					int tens = newDollar / 10;
-					System.out.println(tens);
-					int newDollar2 = newDollar - (tens * 10);
-
-					if (newDollar2 >= 5) {
-						int fives = newDollar2 / 5;
-						System.out.println(fives);
-						int newDollar3 = newDollar2 - (fives * 5);
-						if (newDollar3 >= 1) {
-							int ones = newDollar3 / 1;
-							System.out.println(ones);
-						}
-
-					}
-				}
-				// 10 or less in change not more than 20
-			} else if (dollars >= 10 && dollars < 20) {
-				int tens = dollars / 10;
-				System.out.println(tens);
-				int newDollar = dollars - (tens * 10);
-
-				if (newDollar >= 10) {
-					int fives = newDollar / 5;
-					System.out.println(fives);
-					int newDollar2 = newDollar - (fives * 5);
-					if (newDollar2 >= 1) {
-						int ones = newDollar2 / 1;
-						System.out.println(ones);
-					}
-				}
-				// 5 or less in change not more than 10
-			} else if (dollars >= 5 && dollars < 10) {
-				int fives = dollars / 5;
-				System.out.println(fives);
-				int newDollars = dollars - (fives * 5);
-				if (newDollars >= 1) {
-					int ones = newDollars / 1;
-					System.out.println(ones);
-				}
-			} else if (dollars >= 1 && dollars < 5) {
-				int ones = dollars / 1;
-				System.out.println(ones);
+				System.out.println(twenty + " $20's");
+				dollars %= 20;
 			}
-		} else if (coins > 0) {
-			if (coins >= .25) {
-				double quarter = coins / .25;
-				System.out.println(quarter);
-				double newCoins = coins - (quarter * .25);
-				if (newCoins >= .10 && coins < .25) {
-					double dimes = coins / .1;
-					System.out.println(dimes);
-					double newCoins2 = newCoins - (dimes * .1);
-					if (newCoins2 >= 0.05 && newCoins < 0.1) {
-						double nickles = newCoins2 / 0.05;
-						System.out.println(nickles);
-						double newCoins3 = newCoins2 - (nickles * 0.05);
-						if (newCoins3 > 0.01 && newCoins3 < .05) {
-							double pennies = newCoins3 / 1;
-							System.out.println(pennies);
-						}
-					}
-				}
+			if (dollars >= 10) {
+				int tens = dollars / 10;
+				System.out.println(tens + " $10's");
+				dollars %= 10;
+			}
+			if (dollars >= 5) {
+				int fives = dollars / 5;
+				System.out.println(fives + " $5's");
+				dollars %= 5;
+			}
+		if (dollars >= 1) {
+			System.out.println(dollars + " $1's");
+			dollars %= 1;
 			}
 		}
+		while (cents > 0) {
+			if (cents >= 25) {
+				int quarter = cents / 25;
+				System.out.println(quarter + " Quarter");
+				cents %= 25;
+			}
+			if (cents >= 10) {
+				int dimes = cents / 10;
+				System.out.println(dimes + " Dime");
+				cents %= 10;
+			}
+			if (cents >= 5) {
+				int nickles = cents / 5;
+				System.out.println(nickles + " Nickle");
+				cents %= 5;
+			}
+			if (cents > 0 ) {
+				int pennies = cents / 1;
+				System.out.println(pennies + " Penny");
+				cents %= 1;
+			}
+
+		}
+
+		// if (dollars >= 20) {
+//				int twenty = dollars / 20;
+//				System.out.println(twenty + " $20's");
+//				dollars = dollars % (twenty * 20);
+//				System.out.println(dollars + " dollars after subtracting 20");
+//			} 
+//			else if (dollars >= 10) {
+//					int tens = dollars / 10;
+//					System.out.println(tens + " $10's");
+//					dollars = dollars % (tens * 10);
+//					System.out.println( dollars + " dollars after sub 10's");
+//				}				 
+
+//					if (newDollar2 >= 5 && newDollar2 < 10) {
+//						int fives = newDollar2 / 5;
+//						System.out.println(fives + " $5's");
+//						int newDollar3 = newDollar2 - (fives * 5);
+//						if (newDollar3 >= 1 && newDollar3 <5) {
+//							int ones = newDollar3 / 1;
+//							System.out.println(ones + " $1's");
+//						}
+		// 10 or less in change not more than 20
+//		if (dollars >= 10 && dollars < 20) {
+//			int tens = dollars / 10;
+//			System.out.println(tens + " $10's");
+//			int newDollar = dollars - (tens * 10);
+//
+//			if (newDollar >= 10) {
+//				int fives = newDollar / 5;
+//				System.out.println(fives + "$5's");
+//				int newDollar2 = newDollar - (fives * 5);
+//				if (newDollar2 >= 1) {
+//					int ones = newDollar2 / 1;
+//					System.out.println(ones + " $1's");
+//				}
+//			}
+//			// 5 or less in change not more than 10
+//		}
+//		if (dollars >= 5 && dollars < 10) {
+//			int fives = dollars / 5;
+//			System.out.println(fives + "$5's");
+//			int newDollars = dollars - (fives * 5);
+//			if (newDollars >= 1) {
+//				int ones = newDollars / 1;
+//				System.out.println(ones + " $1's");
+//			}
+//		}
+//		if (dollars >= 1 && dollars < 5) {
+//			int ones = dollars / 1;
+//			System.out.println(ones + " $1's");
+//		}
+
 		sc.close();
 	}
 
@@ -124,47 +172,3 @@ public class MakeChange {
 
 	}
 }
-
-//				// 20's
-//				double twenties = Math.floor(roundChange / 20);
-//				System.out.println(twenties + " $20's");
-//
-//			// 10's
-//			double min20 = roundChange - (twenties * 20);
-//			double tens = Math.floor(min20 / 10);
-//			System.out.println(tens + " $10's");
-//
-//			// 5's
-//			double min10 = min20 - (tens * 10);
-//			double fives = Math.floor(min10 / 5);
-//			System.out.println(fives + " $5's");
-//
-//			// 1's
-//			double min5 = min10 - (fives * 5);
-//			double ones = Math.floor(min5 / 1);
-//			System.out.println(ones + " $1's");
-//			// 0.25's
-//			double min1 = min5 - (ones * 1);
-//			double quarters = Math.floor(min1 / 0.25);
-//			System.out.println(quarters + " $0.25's");
-//
-//			// 0.1's
-//			double minQuarters = min1 - (quarters * 0.25);
-//			System.out.println(minQuarters); 
-//			double dimes = Math.floor(minQuarters / 0.1);
-//			System.out.println(dimes + " $0.10's");
-//
-//			// 0.05's
-//			double minDimes = minQuarters - (dimes * 0.1);
-//			double nickles = Math.floor(minDimes / 0.5);
-//			System.out.println(nickles + " $0.05's");
-//
-//			// 0.01's may run into penny problems, checks for pennies
-//			double minNickles = minDimes - (nickles * 0.5);
-//			double pennies = Math.floor(minNickles / 0.01);
-//			System.out.println(pennies + " $0.01's");
-//
-//	this shouldn't go here because the loop eventually get here always
-//		else {
-//			System.err.print("!!! Payment is less than total !!!");
-// }
