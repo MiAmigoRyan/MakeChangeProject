@@ -18,20 +18,23 @@
 //		Amount: .67, Tendered: .50, Result: Error message
 //1st test : pass
 //2nd test : pass
-//3rd test : 
+//3rd test : pass
 //		Amount: .67, Tendered: 1.00, Result: 1 quarter, 1 nickel, 3 pennies.
-//fail : result 1.31....quarters
-//2nd test :  pass
-//		Amount: .59, Tendered: 1.00, Result: 1 quarter, 1 dime, 1 nickel, 1 penny.
-//fail : result 1.64...quarter
+//1st test : fail : result 1.31....quarters
 //2nd test : pass
+//3rd test : pass
+//		Amount: .59, Tendered: 1.00, Result: 1 quarter, 1 dime, 1 nickel, 1 penny.
+//1st test : fail : result 1.64...quarter
+//2nd test : pass
+//3rd test : pass
 //		Amount: 3.96, Tendered: 20.00, Result: 1 ten dollar bill, 1 five dollar bill, 1 one dollar bill, 4 pennies.
-//fail : result :1 $10's ----no change! ?
-//2nd test :  fail only 3 pennies!!!!
+//1st test : fail : result :1 $10's ----no change! ?
+//2nd test : fail only 3 pennies!!!!
 //3rd test : pass !!!
 //		Amount: any amount less than 20.00, Tendered: anything greater than amount: correct denominations for correct change.
-//fail : will only pass for dollars not change...
+//1st test : fail : will only pass for dollars not change...
 //2nd test : pass for both dollars and cents.
+//3rd test : pass
 import java.util.Scanner;
 
 public class MakeChange {
@@ -51,10 +54,11 @@ public class MakeChange {
 
 		double coins = giveChange - dollars;
 	//System.out.println(coins);
+	//	double cents = coins *100;
 		double rndCents = Math.round(coins*100);
 		int cents = (int) rndCents;
 //		System.out.println(coins + "round?");
-//		int cents = (int) coins;
+	//	int cents = (int) coins;
 //		System.out.println(cents);
 		if (paid > cost) {
 			System.out.println("Total Change Due");
