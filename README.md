@@ -12,10 +12,13 @@ description of project
 - Coffee maker
 
 ## Lessons Learned
-- I learned a lot about the process of building a program. I did not apply loops effectively on my first iteration of the project. In the future I think I'll invest more time into the psudo code and planning.
+- I learned a lot about the process of building a program. I did not apply loops effectively on my first iteration of the project. 
+In the future I think I'll invest more time into the psudo code and planning.
 - In this project I spent a lot of time playing with nested loops but eventually realized that my mathamatics were incorrect rather than the logic
 - Using the Math.round(double) was more effective than "double*100" to round. 
 - casting a double to an int will turncate or remove which can be problematic, shown by test 4.
+- After creating a working program I realized that loops are not needed. I re-wrote the program without loops, original solution is commented out.
+- I also re-organized the declarations to improve readability.
 
 ## Further questions
 - How to automate the testing step.
