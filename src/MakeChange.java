@@ -66,6 +66,8 @@ public class MakeChange {
 
 	}
 }
+
+//*********************** ORIGINAL SOLUTON ***********************
 // tests: 
 //		Amount: .67, Tendered: .50, Result: Error message
 //1st testing : pass
